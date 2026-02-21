@@ -1,0 +1,20 @@
+{
+  "users": {
+    "standard_user": {
+      "username": "standard_user",
+      "password": "secret_sauce",
+      "firstName": "John",
+      "lastName": "Doe",
+      "zip": "12345",
+      "expectedDbStatus": "COMPLETE"
+    },
+    "problem_user": {
+      "username": "problem_user",
+      "password": "secret_sauce",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "zip": "90210",
+      "expectedDbStatus": "COMPLETE"
+    }
+  }
+}

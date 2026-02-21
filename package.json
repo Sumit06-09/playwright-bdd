@@ -1,0 +1,21 @@
+{
+  "name": "quad-infotech-qa-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+"scripts": {
+  "test": "cucumber-js",
+  "test:headed": "set HEADLESS=false && cucumber-js",
+  "test:report": "cucumber-js --format html:cucumber-report.html"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.6.0",
+    "@playwright/test": "^1.58.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
