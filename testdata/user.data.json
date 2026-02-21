@@ -15,6 +15,14 @@
       "lastName": "Smith",
       "zip": "90210",
       "expectedDbStatus": "COMPLETE"
+    },
+    "locked_out_user": {
+      "username": "locked_out_user",
+      "password": "secret_sauce",
+      "firstName": "N/A",
+      "lastName": "N/A",
+      "zip": "00000",
+      "expectedDbStatus": "N/A"
     }
   }
 }

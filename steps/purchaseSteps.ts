@@ -1,4 +1,5 @@
 import { Given, When, Then } from '@cucumber/cucumber';
+import { expect } from '@playwright/test';
 import { page } from '../support/hooks';
 import { LoginPage } from '../pages/LoginPage';
 import { InventoryPage } from '../pages/InventoryPage';
@@ -12,17 +13,13 @@ let checkoutPage: CheckoutPage;
 let dm: DataManager; 
 const db = new DbUtil();
 
-// This step links the Gherkin string "standard_user" to your JSON
-Given('I use test data for {string}', (userKey: string) => {
-    dm = new DataManager(userKey);
-});
-
 Given('I am on the SauceDemo login page', async () => {
     loginPage = new LoginPage(page);
     await loginPage.navigate();
 });
 
-When('I login with valid credentials', async () => {
+When('I login with {string}', async (userKey: string) => {
+    dm = new DataManager(userKey);
     await loginPage.login(dm.username, dm.password);
 });
 
@@ -51,4 +48,17 @@ Then('the order status should be correct in the database', async () => {
     if (actualStatus !== dm.expectedStatus) {
         throw new Error(`DB Fail: Expected ${dm.expectedStatus} but got ${actualStatus}`);
     }
+});
+
+Then('I should be redirected to the inventory page', async () => {
+    await expect(page).toHaveURL(/.*inventory.html/);
+});
+
+Then('I should see the error message {string}', async (expectedError: string) => {
+    const actualError = await loginPage.getErrorMessage();
+    expect(actualError).toContain(expectedError);
+});
+
+Then('I should remain on the login page', async () => {
+    expect(page.url()).toBe('https://www.saucedemo.com/');
 });
