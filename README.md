@@ -1,16 +1,13 @@
+Gemini said
+Since your repository is now green and the architecture is solid, we need a README that matches that high quality. This version explains your DataManager and GitHub Actions setup, which are the "star features" of your project.
+
+Go to your README.md on GitHub, click the Edit (pencil icon), and replace everything with this:
+
 Playwright BDD Automation Framework
-This repository contains a professional-grade test automation framework for SauceDemo, built using Playwright, Cucumber (BDD), and TypeScript.
+A professional-grade test automation framework for SauceDemo, built using Playwright, Cucumber (BDD), and TypeScript.
 
-🚀 Key Features
-BDD Integration: Gherkin-style feature files for clear business requirement mapping.
-
-Page Object Model (POM): Scalable and maintainable structure for UI elements and actions.
-
-DataManager Pattern: Externalized test data in JSON format with TypeScript Getters for clean, type-safe data access.
-
-Database Mocking: Simulated database validation for order status verification.
-
-CI/CD Pipeline: Fully integrated with GitHub Actions to run tests automatically on every push.
+🚀 Project Status
+Note: Tests are fully integrated with GitHub Actions and run automatically on every push.
 
 🛠️ Tech Stack
 Language: TypeScript
@@ -19,30 +16,42 @@ Test Runner: Playwright
 
 BDD Tool: Cucumber.js
 
-CI/CD: GitHub Actions
+CI/CD: GitHub Actions (Node 20 environment)
 
-📁 Project Structure
+🏗️ Framework Architecture
+This project implements a highly scalable architecture:
+
+1. DataManager Pattern
+Instead of hardcoding data or importing raw JSON into step definitions, I implemented a DataManager class.
+
+Encapsulation: All JSON parsing logic is hidden.
+
+Type Safety: Uses TypeScript getters (e.g., dm.username) to prevent runtime errors.
+
+Maintainability: Adding a new test user only requires an entry in user.data.json.
+
+2. Page Object Model (POM)
+Separates UI locators from test logic, ensuring that if the website UI changes, only the Page class needs an update.
+
+3. Database Mocking
+Included a DbUtil class to demonstrate the ability to perform backend validation (e.g., verifying order status in a database) alongside UI tests.
+
+📁 Folder Structure
 Plaintext
-├── .github/workflows/   # CI/CD pipeline configuration
-├── features/            # Gherkin feature files
-├── pages/               # Page Object Model classes
-├── steps/               # Step definitions connecting Gherkin to code
-├── support/             
-│   ├── dataManager.ts   # Logic for external JSON data handling
-│   ├── dbUtil.ts        # Database verification utility (Mock)
-│   └── hooks.ts         # Browser setup and teardown
-└── testdata/            # External JSON test data files
-⚙️ Setup and Installation
-Clone the repository:
+├── .github/workflows/   # CI/CD (GitHub Actions)
+├── features/            # Gherkin Business Scenarios
+├── pages/               # Page Objects (UI Locators/Actions)
+├── steps/               # Step Definitions
+├── support/             # DataManager, Hooks, and DbUtil
+└── testdata/            # External JSON Data
+⚙️ Local Setup
+Clone & Install:
 
 Bash
-git clone <your-repo-url>
-cd <your-repo-folder>
-Install dependencies:
-
-Bash
+git clone https://github.com/Sumit06-09/playwright-bdd.git
+cd playwright-bdd
 npm install
-Install Playwright Browsers:
+Install Browsers:
 
 Bash
 npx playwright install chromium
@@ -50,19 +59,7 @@ Run Tests:
 
 Bash
 npm test
-📊 Framework Design Decisions
-1. DataManager Pattern (External Data)
-I implemented a DataManager class to handle external JSON data. This approach uses TypeScript Getters, ensuring that step definitions remain clean and readable. Instead of parsing JSON inside the test logic, we simply call dm.username or dm.firstName. This makes the framework highly scalable.
-
-2. Database Validation
-The framework includes a DbUtil class to demonstrate the ability to perform end-to-end verification beyond the UI. It mocks a database check to ensure that the order status has been updated correctly in the backend.
-
-3. CI/CD Integration
-A GitHub Actions workflow is configured to run regression tests on every pull request or push to the main branch, ensuring code quality and immediate feedback.
-
 🤖 AI Disclosure & Assumptions
-AI Disclosure: AI tools were used to assist in architectural decision-making, specifically in optimizing the DataManager pattern and troubleshooting TypeScript configuration for JSON module resolution.
+AI Disclosure: AI was used to assist in architectural optimization (specifically the DataManager pattern) and troubleshooting environment mismatches between Windows and Linux (GitHub Actions).
 
-Assumptions: * The test focuses on the "Standard User" happy path for the Sauce Labs Backpack.
-
-Database verification is performed via a mock utility as a placeholder for real DB connectivity.
+Assumptions: The database validation is currently mocked via DbUtil to demonstrate the end-to-end flow without requiring a live database connection.
