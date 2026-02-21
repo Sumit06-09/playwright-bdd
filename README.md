@@ -1,8 +1,3 @@
-Gemini said
-Since your repository is now green and the architecture is solid, we need a README that matches that high quality. This version explains your DataManager and GitHub Actions setup, which are the "star features" of your project.
-
-Go to your README.md on GitHub, click the Edit (pencil icon), and replace everything with this:
-
 Playwright BDD Automation Framework
 A professional-grade test automation framework for SauceDemo, built using Playwright, Cucumber (BDD), and TypeScript.
 
