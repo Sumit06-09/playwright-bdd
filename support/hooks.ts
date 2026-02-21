@@ -8,7 +8,14 @@ let context: BrowserContext;
 export let page: Page;
 
 Before(async function () {
-    browser = await chromium.launch({ headless: false });
+    // This logic ensures it runs headless in CI but can stay headed locally
+    const isCI = !!process.env.CI; 
+
+    browser = await chromium.launch({ 
+        headless: isCI ? true : false, // Auto-detect environment
+        args: ['--no-sandbox', '--disable-setuid-sandbox'] 
+    });
+    
     context = await browser.newContext();
     page = await context.newPage();
 });
