@@ -1,4 +1,4 @@
-import * as userData from '../testdata/user.data.json';
+const userData = require('../testdata/user.data.json');
 
 export class DataManager {
     private data: any;

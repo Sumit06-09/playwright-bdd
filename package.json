@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
 "scripts": {
-  "test": "cucumber-js",
-  "test:headed": "set HEADLESS=false && cucumber-js",
-  "test:report": "cucumber-js --format html:cucumber-report.html"
+  "test": "cucumber-js features/**/*.feature --require-module ts-node/register --require steps/**/*.ts"
 },
   "keywords": [],
   "author": "",
